@@ -46,5 +46,8 @@ this.fetchProducts()
 <style lang="scss" scoped>
 .product-list{
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
 }
 </style>

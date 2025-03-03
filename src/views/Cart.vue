@@ -1,8 +1,8 @@
 <template>
-  <div class="cart-container">
+  <div class="container">
     <template v-if="cartItems">
-      <ul>
-        <li
+      <ul class="list-group" >
+        <li class="list-group-item"
             v-for="item in cartItems"
             :key="item.id"
         >
@@ -11,7 +11,7 @@
       </ul>
       <div class="panel">
         Quantity : {{ cartCount }}
-        Total : {{ cart.total }}
+        Total : {{ cartTotalPrice}}$
       </div>
     </template>
     <template v-else>
@@ -32,11 +32,11 @@ import ProductCardVue from "@/components/ProductCard.vue";
 
 export default {
   name: 'CartView',
-  components: {ProductCardVue},
+  components: {ProductCardVue},// eslint-disable-line
   computed: {
     ...mapGetters({
       cartItems: 'cartItems',
-      cart: 'cart',
+      cartTotalPrice: 'cartTotalPrice',
       cartCount: 'cartCount'
     })
   }
@@ -47,6 +47,9 @@ export default {
   width: 400px;
 
 
+}
+.container{
+  margin-top: 50px;
 }
 
 </style>

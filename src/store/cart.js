@@ -1,5 +1,5 @@
 // import category from "@/store/category";
-
+import {sum} from 'ramda'
 
 
 const mutations = {
@@ -10,6 +10,7 @@ const mutations = {
 }
 const actions = {}
 const getters = {
+    cartTotalPrice : ({cartItems})=> sum(cartItems.map(item => item.price)),
     cartCount: ({cartItems}) => cartItems.length,
     cart: ({cart}) => cart,
     cartItems: ({cartItems}) => cartItems,

@@ -1,12 +1,13 @@
 <template>
   <div class="card">
-    <div class="card_header">{{ title }}-{{ price }}$</div>
+      <div class="card_header">{{ title }}-{{ price }}$</div>
 
       <img :src="imageUrl" alt="img">
-    <div class="card_footer">
-      <button @click="$emit('add-To-Cart' )">PAY</button>
-    </div>
 
+
+    <div class="card_footer">
+      <button class="btn btn-primary" @click="$emit('add-To-Cart' )">PAY</button>
+    </div>
   </div>
 
 </template>
@@ -47,11 +48,11 @@ export default {
     padding: revert;
     height: 150px;
   }
-&_footer
+
+}
+.card_footer
 {
   margin-top: 10px;
   padding: 0;
 }
-}
-
 </style>
