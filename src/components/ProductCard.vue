@@ -38,8 +38,8 @@ export default {
 
   width: 340px;
   height: 200px;
-  padding: 20px;
-  margin: 10px;
+  padding: 25px;
+  margin: 25px;
   border: 1px solid black;
   border-radius: 12px;
 
@@ -54,5 +54,9 @@ export default {
 {
   margin-top: 10px;
   padding: 0;
+}
+.card_header{
+
+  margin-top: -10px;
 }
 </style>
