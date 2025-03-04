@@ -8,6 +8,7 @@
                      :price="product.price"
                      :image-url="product.imageUrl"
                      @add-To-Cart="addToCart(product)"
+                     :inCart="cartItemsId.includes(product._id)"
     />
  </div>
   </div>
@@ -30,8 +31,10 @@ this.fetchProducts()
   },
   computed:{
     ...mapGetters({
-      products: 'products'
-    })
+      products: 'products',
+      cartItems:'cartItems'
+    }),
+      cartItemsId : ({cartItems})=> cartItems.map(({_id}) => _id)
   },
   methods:{
     ...mapActions({

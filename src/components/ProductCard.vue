@@ -5,9 +5,16 @@
       <img :src="imageUrl" alt="img">
 
 
-    <div class="card_footer">
-      <button class="btn btn-primary" @click="$emit('add-To-Cart' )">PAY</button>
-    </div>
+  <div class="card_footer">
+    <button class="btn btn-primary" @click="$emit('add-To-Cart' )"  v-if="!inCart">
+      ADD ON BOX
+    </button>
+      <button class="btn btn-danger" @click="$emit('add-To-Cart' )" v-else>
+      DELETE from box
+    </button>
+
+</div>
+
   </div>
 
 </template>
@@ -27,6 +34,10 @@ export default {
       type: String,
       default: ''
     },
+    inCart:{
+      type:Boolean,
+      default:false
+    }
 
   },
 
@@ -58,5 +69,10 @@ export default {
 .card_header{
 
   margin-top: -10px;
+}
+.buttons{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 </style>
