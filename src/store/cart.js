@@ -4,8 +4,14 @@ import {sum} from 'ramda'
 
 const mutations = {
     addToCart(state, product) {
-        console.log(product)
-        state.cartItems.push(product)
+        const productInCart = state.cartItems.find(({_id}) => product._id === _id) // проверка есть ли товар в корзине
+        if(productInCart){
+            const currentProductsInCart = state.cartItems
+            state.cartItems = currentProductsInCart.filter(({_id}) => product._id !== _id)
+        }else {
+            state.cartItems.push(product)
+        }
+
     }
 }
 const actions = {}
