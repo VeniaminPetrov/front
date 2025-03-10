@@ -1,5 +1,6 @@
 // import category from "@/store/category";
 import {sum} from 'ramda'
+import {getPaymentIntent} from '@/services/payment.service'
 
 
 const mutations = {
@@ -12,15 +13,32 @@ const mutations = {
             state.cartItems.push(product)
         }
 
+    },
+    SetPaymentError(state, error) {
+        state.paymentError = error
     }
 }
-const actions = {}
+const actions = {
+    async handleBuy({getters , commit}){
+
+        try {
+            console.log('PROVERCA' , getters.cartTotalPrice)
+            const intent= await getPaymentIntent({amount: getters.cartTotalPrice})
+            console.log('INTENT' ,intent)
+            return intent
+        }catch (err){
+            commit('SetPaymentError' , err)
+        }
+
+
+    }
+}
 const getters = {
     cartTotalPrice : ({cartItems})=> sum(cartItems.map(item => item.price)),
     cartCount: ({cartItems}) => cartItems.length,
     cart: ({cart}) => cart,
     cartItems: ({cartItems}) => cartItems,
-
+    paymentError: ({paymentError}) => paymentError
 
 }
 const state = () => ({
@@ -28,7 +46,8 @@ const state = () => ({
     cart: {
         total:0
     },
-    cartItems: []
+    cartItems: [],
+    paymentError :null
 })
 
 export default {
